@@ -226,3 +226,69 @@ var a = [1, 2, 3];
 var b = [4, 5, 6];
 var c = [0, ...a, ...b, 7];
 ```
+
+
+## Default Parameters
+
+* ES6 gives default parameters - much easier readability
+
+```javascript
+function foo(x) {
+  x = x || 42;
+}
+
+// Long form
+function foo(x) {
+  x = x !== undefined ? x || 42;
+}
+
+// Default parameter
+function foo(x = 42) {
+  // ...
+}
+```
+
+* Default parameter can be any valid JavaScript
+
+```javascript
+function foo(x = bar()) {
+  // ...
+}
+
+function foo(x = 2, id = uniqId(x)) {
+  // ...
+}
+```
+
+* Parameter list becomes it's own scope when using default parameters.
+
+```javascript
+var x = 10;
+
+// x cannot be reached from the parameter scope.
+function foo(id = uniqId(x)) {
+  // ...
+}
+```
+
+* Be careful with implementations
+
+```javascript
+function foo(x = 2) {
+  var x;
+  console.log(x);
+}
+
+foo();
+// Expected => undefined
+// Chrome & Babel => 2
+
+function foo(x = function() { return x; }) {
+  var x = 2;
+  console.log(x);
+}
+
+foo();
+// Expected => function
+// Chrome & Babel => 2
+```
