@@ -136,3 +136,74 @@ var {
   f
 } = foo();
 ```
+
+### Named Parameters
+
+* Object destructuring can be used to extract named parameters.
+
+```javascript
+function foo({ a, b, c, d, e, f, g } = {}) {
+  // ...
+}
+
+foo({
+  c: 1,
+  a: 2,
+  g: 3
+});
+```
+
+* **Kyle says:** Useful pattern - _destructuring and restructuring_.
+* Useful for deep merging objects.
+
+```javascript
+const defaults = {
+  studentName: 'John',
+  age: 25,
+  address: {
+    address1: '123 Easy Street',
+    city: 'Austin',
+    state: 'TX'
+  },
+  interests: [
+    'javascript'
+  ]
+};
+
+var config = {
+  age: 30,
+  address: {
+    address1: '456 Easy Street'
+  }
+};
+
+{
+  let {
+    studentName = defaults.studentName,
+    age = defaults.age,
+    address: {
+      address1 = defaults.address.address1,
+      city = defaults.address.city,
+      state = defaults.address.state
+    } = {},
+    interests: [
+      interest1 = defaults.interests[0],
+      ...otherInterests
+    ] = []
+  } = config;
+
+  config = {
+    studentName,
+    age,
+    address: {
+      address1,
+      city,
+      state
+    },
+    interests: [
+      interest1,
+      ...otherInterests
+    ]
+  };
+}
+```
