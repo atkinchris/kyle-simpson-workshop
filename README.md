@@ -5,3 +5,4 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Introductions
 * Arrow Functions
 * Scoping
+* Spread/gather operator

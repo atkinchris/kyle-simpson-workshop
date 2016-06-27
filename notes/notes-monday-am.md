@@ -180,3 +180,49 @@ x[0] = 4;
 // Object#freeze is shallow
 const x = Object.freeze([1, 2, 3]);
 ```
+
+
+## `...` Operator - Gather/Spread
+
+* Not used to hide implementation - but to allow us to focus on what we're actually doing, and letting the engine handle the _how_.
+
+```javascript
+// Without ...
+function foo() {
+  var args = [].slice.call(arguments);
+  args.push(42);
+  bar.apply(null, args);
+}
+
+// Used as gather
+function foo(...args) {
+  args.push(42);
+  // Used as spread
+  bar(...args);
+}
+
+// Used to gather all remaining arguments
+function foo(x, ...args) {
+  args.push(42);
+  x(...args);
+}
+
+// Could also not even use Array#push
+function foo(...args) {
+  bar(...args, 42);
+}
+```
+
+* `...` can also be used for Array manipulation
+
+```javascript
+var a = [1, 2, 3];
+var b = [4, 5, 6];
+
+var [0].concat(a, b, 7);
+// => [0, 1, 2, 3, 4, 5, 6, 7]
+
+var a = [1, 2, 3];
+var b = [4, 5, 6];
+var c = [0, ...a, ...b, 7];
+```
