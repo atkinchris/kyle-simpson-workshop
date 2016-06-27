@@ -1,10 +1,12 @@
-function upper(strings,...values) {}
+function upper(strings,...values) {
+	return strings.reduce((out, str, i) => [...out, str, (values[i] || '').toUpperCase()], []).join('');
+}
 
 var name = "kyle",
 	twitter = "getify",
 	classname = "es6 workshop";
 
 console.log(
-`Hello ____ (@____),
-welcome to the ____!`
+upper`Hello ${name} (@${twitter}),
+welcome to the ${classname}!`
 );
