@@ -283,3 +283,39 @@ var o = {
   }
 }
 ```
+
+
+## String Manipulation
+
+* **Kyle says:** _Template literals_ are better named _Interpolated string literals_.
+
+```javascript
+var name = 'Kyle';
+var title = 'Teacher';
+var workshop = 'ES6';
+
+// String interpolation
+var msg = 'Hello ' + name + ', ' +
+  'you are the ' + title + ' of the ' +
+  workshop + ' workshop!';
+
+// String continuation - escaping new lines in source code
+var msg = 'Hello ' + name + ', \
+  you are the ' + title + ' of the ' +
+  workshop + ' workshop!';
+
+// Template literal
+var msg = `Hello ${name}, you are the ${title} of the ${workshop} workshop!`;
+```
+
+* Tags can be used to perform functions on each string component.
+
+```javascript
+function foo(strings, ...values) {
+  var str = '';
+
+  return str;
+}
+
+var msg = foo`Hello ${name}, you are the ${title} of the ${workshop} workshop!`;
+```
