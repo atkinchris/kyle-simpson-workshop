@@ -65,3 +65,92 @@ bar(() => {
 ```
 
 * For further reading, see _Arrow Functions_ chapter in _ES6 & Beyond_ book.
+
+## Scoping
+* Default to making things as hidden as possible - _The Principle of Least Exposure_.
+
+### `let`
+
+```javascript
+// Stylistic scoping of variables
+function foo(x, y) {
+  if (x > y) {
+    var tmp = x;
+    x = y;
+    y = tmp;
+  }
+}
+
+// Declaring all variables at the top of scope
+function foo() {
+  var i;
+
+  for (i = 0; ..) {
+    // ...
+  }
+}
+
+// Let - block scoped
+function foo(x, y) {
+  if (x > y) {
+    let tmp = x;
+    x = y;
+    y = tmp;
+  }
+
+  for (let i = 0; ..) {
+    // ...
+  }
+}
+```
+
+* Some people have advocated `let` is the new `var` - but this is not always the best thing.
+* Instead - use `var` for all variables you intend to be used across scopes.
+
+```javascript
+// Wrapping in a try/catch to debug will affect scope
+function foo(x, y) {
+  try {
+    let z = bar(x) * y;
+  } catch (err) {
+    // z doesn't exist here!
+  }
+
+  // z doesn't exist here either!
+}
+
+// In this case, this looks like double declaration - it's not
+// Kyle says: this is more readable - the declarations are closer to where it's used
+function foo(x, y) {
+  if (x > 10) {
+    var z = x;
+  }
+  else {
+    var z = y;
+  }
+}
+
+function foo(x, y) {
+  if (x > y) {
+    // Explicit block scoping.
+    // Stylistic declaration at top of scope, on one line
+    { let tmp = x;
+      x = y;
+      y = tmp;
+    }
+  }
+}
+```
+
+* _TDZ_ - _temporal dead zone_. Time between opening of a block and the time you declare a variable. A variable cannot be used in this _zone_. (**Kyle says**: WTF is that name)
+* Hoisting is a metaphor for the actual first pass of compilation.
+* `let` will automatically close scope for each iteration of a for-loop, removing the need for internal binding.
+
+```javascript
+// let will scope the i to the for-loop, and close it for each iteration
+for (let i = 0; i < 5; i++) {
+  setTimeout(function() {
+    console.log('i:', i);
+  }, i * 1000);
+}
+```
