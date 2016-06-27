@@ -376,3 +376,69 @@ for (let val of a) {
   console.log(val);
 }
 ```
+
+
+## Map
+
+```javascript
+var m = new Map();
+m.set('x', 42);
+
+for (var x of m.entries()) {
+  console.log(x);
+}
+```
+
+## Generators
+
+* Not guaranteed to run to completion.
+* Can be _paused_ by using `yield` to return a value.
+* Return an iterator when executed.
+
+```javascript
+function *foo() {
+  for (let i = 0; i < 10; i++) {
+    yield i;
+  }
+}
+
+var it = foo();
+
+for (let val of it) {
+  console.log(val);
+}
+```
+
+* Can be used to create your own iterators.
+
+```javascript
+// With Symbols
+var o = {
+  [Symbol.iterator]() {
+    var i = 0;
+
+    return {
+      next() {
+        if (i < 10) return { value: i++, done: false };
+        return { done: true };
+      }
+    }
+  }
+}
+
+// With Generators
+var o = {
+  *[Symbol.iterator]() {
+    var keys = Object.getOwnPropertyNames(this);
+    for (let key of keys) {
+      yield this[key];
+    }
+  },
+  a: 2,
+  b: 3,
+  c: 4
+}
+```
+
+* Iterables cannot be used with `map` and `reduce` - these are specific to real arrays.
+* Can be converted to real arrays with `[...o]`, allowing for `[...o].map(..)`.

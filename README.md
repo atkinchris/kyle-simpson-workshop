@@ -19,3 +19,5 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * _Exercise 4_
 * Symbols
 * Iterators
+* Map
+* Generators
