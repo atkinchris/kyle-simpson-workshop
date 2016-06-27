@@ -18,3 +18,4 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * String Interpolation
 * _Exercise 4_
 * Symbols
+* Iterators

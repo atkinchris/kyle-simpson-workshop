@@ -342,3 +342,37 @@ o[Object.getOwnPropertySymbols(o)[0]]; // => 42
   * `Symbol.iterator`
   * `Symbol.hasInstance`
   * `Symbol.toPrimitive`
+
+
+## Iterators
+
+* Can use symbols to access native iterator on `Array`-like objects.
+
+```javascript
+var a = [1, 2, 3, 4, 5];
+
+var it = a[Symbol.iterator]();
+
+it.next(); // => { value: 1, done: false }
+it.next(); // => { value: 2, done: false }
+it.next(); // => { value: 3, done: false }
+it.next(); // => { value: 4, done: false }
+it.next(); // => { value: 5, done: false }
+it.next(); // => { value: undefined, done: true }
+
+// Can also be done with a for-loop
+for (let ret; !(ret || ret.done);) {
+  ret = it.next();
+  console.log(ret.value);  
+}
+```
+
+* For-loops on iterators are messy. Use for-of.
+
+```javascript
+var a = [1, 2, 3, 4, 5];
+
+for (let val of a) {
+  console.log(val);
+}
+```
