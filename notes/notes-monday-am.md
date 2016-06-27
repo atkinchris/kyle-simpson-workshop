@@ -154,3 +154,29 @@ for (let i = 0; i < 5; i++) {
   }, i * 1000);
 }
 ```
+
+### `const`
+
+* Immutable assignment, not value - not _constant_.
+* In the presence of long-lived closures, `const` will not be garbage collected until the scope is destroyed.
+
+```javascript
+const x = [1, 2, 3];
+
+// Not allowed
+x = [4, 5, 6];
+
+// Is allowed
+x[0] = 4;
+```
+
+* **Kyle says:** rather than using `const` to signal unchanging assignment - simply keep scopes short and don't reassign it.
+* He's never had a bug that came from reassigning a variable.
+* For _proper_ immutability, use `Object.freeze` - beware, this is shallow.
+* `const` doesn't really help - it's more a reassuring _night light_ to a monster that doesn't exist.
+
+```javascript
+// Proper value immutability
+// Object#freeze is shallow
+const x = Object.freeze([1, 2, 3]);
+```
