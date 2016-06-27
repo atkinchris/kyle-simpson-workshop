@@ -319,3 +319,26 @@ function foo(strings, ...values) {
 
 var msg = foo`Hello ${name}, you are the ${title} of the ${workshop} workshop!`;
 ```
+
+
+## Symbols
+
+* Not created with `new` - `function` creator.
+* Can be used as a _meta_ property on an object. Creates a unique symbol, guaranteed to be free from collisions.
+
+```javascript
+var x = Symbol('arbitrary string');
+
+var o {
+  [x]: 42
+}
+
+o[x]; // => 42
+
+o[Object.getOwnPropertySymbols(o)[0]]; // => 42
+```
+
+* It's uncommon to create your own symbols - but there are built in ones that are useful.
+  * `Symbol.iterator`
+  * `Symbol.hasInstance`
+  * `Symbol.toPrimitive`

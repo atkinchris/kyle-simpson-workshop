@@ -17,3 +17,4 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Getters and Setters
 * String Interpolation
 * _Exercise 4_
+* Symbols
