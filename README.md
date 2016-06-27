@@ -7,3 +7,6 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Scoping
 * Spread/gather operator
 * Default parameters
+
+## Monday PM
+* Destructuring
