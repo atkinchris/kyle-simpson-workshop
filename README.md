@@ -21,3 +21,4 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Iterators
 * Map
 * Generators
+* _Exercise 5_
