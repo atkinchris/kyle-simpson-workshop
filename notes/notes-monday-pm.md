@@ -207,3 +207,79 @@ var config = {
   };
 }
 ```
+
+
+## Object Literals
+
+* Concise properties allow you to omit the property name declaration.
+* Concise naming can also work for functions.
+
+```javascript
+var a = 1;
+
+var o {
+  a,
+  // Function name is unneeded b: function() {}
+  b() {
+
+  }
+}
+```
+
+* Concise functions can cause issues where names collide.
+
+```javascript
+var o = {
+  a,
+  // Will work
+  b() {
+    this.b();
+  },
+  // Will fail
+  c() {
+    c()
+  }
+}
+```
+
+* Computed properties are now valid.
+
+```javascript
+var prop = 'c';
+
+// Old
+var o = {
+  a
+};
+o[prop] = 42;
+
+// New
+var o = {
+  a,
+  [prop]: 42
+}
+
+// Also works for functions
+var o = {
+  a,
+  [prop + 'fn']() {
+
+  }
+}
+```
+
+* This also works for _generators_. `{ *a() {} }`
+
+
+## Getters and Setters
+
+```javascript
+var o = {
+  get abc() {
+    return this.__abc;
+  },
+  set abc(x) { // Parameter name is required
+    this.__abc = x;
+  }
+}
+```

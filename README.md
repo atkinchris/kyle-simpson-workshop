@@ -5,8 +5,12 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Introductions
 * Arrow Functions
 * Scoping
+* _Exercise 1_
 * Spread/gather operator
+* _Exercise 2_
 * Default parameters
 
 ## Monday PM
 * Destructuring
+* _Exercise 3_
+* Object literals
