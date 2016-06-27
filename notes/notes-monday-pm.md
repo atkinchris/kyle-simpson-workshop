@@ -285,7 +285,7 @@ var o = {
 ```
 
 
-## String Manipulation
+## String Interpolation
 
 * **Kyle says:** _Template literals_ are better named _Interpolated string literals_.
 

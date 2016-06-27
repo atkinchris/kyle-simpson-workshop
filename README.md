@@ -14,3 +14,6 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Destructuring
 * _Exercise 3_
 * Object literals
+* Getters and Setters
+* String Interpolation
+* _Exercise 4_
