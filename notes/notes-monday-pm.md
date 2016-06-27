@@ -442,3 +442,25 @@ var o = {
 
 * Iterables cannot be used with `map` and `reduce` - these are specific to real arrays.
 * Can be converted to real arrays with `[...o]`, allowing for `[...o].map(..)`.
+
+
+### Number iterators
+
+* It's possible to use generators to create number iterators.
+
+```javascript
+Number.prototype[Symbol.iterator] = function *range() {
+  var start = 0;
+  var end = Number(this);
+  for (var i = start; i <= end; i++) {
+    yield i;
+  }
+}
+
+for (let num of 8) {
+  console.log(num);
+} // => 0, 1, 2, 3, 4, 5, 6, 7, 8
+
+// Or even more succinctly
+[...8] // => [0, 1, 2, 3, 4, 5, 6, 7, 8]
+```
