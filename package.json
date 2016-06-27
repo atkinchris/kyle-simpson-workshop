@@ -1,0 +1,24 @@
+{
+  "name": "kyle-simpson-workshop",
+  "version": "1.0.0",
+  "description": "Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node --presets es2015"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atkinchris/kyle-simpson-workshop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atkinchris/kyle-simpson-workshop/issues"
+  },
+  "homepage": "https://github.com/atkinchris/kyle-simpson-workshop#readme",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0"
+  }
+}
