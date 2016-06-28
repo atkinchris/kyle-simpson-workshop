@@ -24,4 +24,5 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * _Exercise 5_
 
 ## Tuesday AM
-* Async Patterns
+* Parallel vs Async
+* Callbacks
