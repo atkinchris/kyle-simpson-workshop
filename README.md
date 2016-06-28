@@ -30,3 +30,5 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Thunks
 * _Exercise 2_
 * Promises
+* _Exercise 3_
+* _Exercise 4_

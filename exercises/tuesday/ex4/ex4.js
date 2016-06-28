@@ -33,4 +33,9 @@ function getFile(file) {
 // but only once previous rendering
 // is done.
 
-// ???
+['file1', 'file2', 'file3']
+	.map(getFile)
+	.reduce((chain, promise) => {
+		return chain.then(() => promise).then(output)
+	}, Promise.resolve())
+	.then(() => output('Complete!'));
