@@ -53,3 +53,18 @@ asyncThunk(function(sum) {
 ```
 
 * These thunks are _lazy_. The function call is deferred until it's actually called.
+* Thunks can be _eager_, performing their async action as soon as they're created.
+
+
+## Promises
+
+* Promises are placeholders for future values.
+* Whereas callbacks give control to the other part of the program, Promises are controlled by the consuming code.
+* Promise libraries are callback managers in effect - they are trustable. They are:
+  * Only resolved once
+  * Resolve with either success or error
+  * Messages are passed/kept
+  * Exceptions become errors
+  * Most importantly: immutable once resolved
+* **Kyle says:** A promise's normalisation of trust is the most exciting part of this.
+* Rather than controlling flow with nested callbacks, promises use chained `then` functions.
