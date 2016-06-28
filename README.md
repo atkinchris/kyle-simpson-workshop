@@ -26,4 +26,6 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 ## Tuesday AM
 * Parallel vs Async
 * Callbacks
-* _Async Exercise 1_
+* _Exercise 1_
+* Thunks
+* _Exercise 2_
