@@ -20,10 +20,35 @@ function output(text) {
 // **************************************
 // The old-n-busted callback way
 
+var responses = {};
+var files = [
+	'file1',
+	'file2',
+	'file3'
+];
+
 function getFile(file) {
 	fakeAjax(file,function(text){
-		// what do we do here?
+		handleResponse(file, text);
 	});
+}
+
+function handleResponse(url, text) {
+	if (!(url in responses)) {
+		responses[url] = text;
+	}
+
+	for (var i = 0; i < files.length; i++) {
+		if(files[i] in responses) {
+			if (responses[files[i]] != null) {
+				output(responses[files[i]]);
+				responses[files[i]] = null;
+			}
+		}
+		else return;
+	}
+
+	output('Complete!');
 }
 
 // request all files at once in "parallel"
