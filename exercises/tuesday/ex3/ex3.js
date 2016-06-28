@@ -15,13 +15,25 @@ function fakeAjax(url,cb) {
 
 function output(text) {
 	console.log(text);
+	return text;
 }
 
 // **************************************
 
 function getFile(file) {
-	// what do we do here?
+	return new Promise(resolve => {
+		fakeAjax(file, resolve);
+	});
 }
 
 // request all files at once in "parallel"
-// ???
+var t1 = getFile('file1');
+var t2 = getFile('file2');
+var t3 = getFile('file3');
+
+t1.then(output)
+	.then(() => t2)
+	.then(output)
+	.then(() => t3)
+	.then(output)
+	.then(() => output('Complete!'));

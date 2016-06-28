@@ -68,3 +68,17 @@ asyncThunk(function(sum) {
   * Most importantly: immutable once resolved
 * **Kyle says:** A promise's normalisation of trust is the most exciting part of this.
 * Rather than controlling flow with nested callbacks, promises use chained `then` functions.
+* Promises are technically monadic values, in a functional sense.
+
+
+### Refresher: Map & Reduce
+
+```javascript
+[1, 2, 3, 4, 5].map(val => val * 2);
+// => [2, 4, 6, 8, 10]
+
+[1, 2, 3, 4, 5].reduce((sum, val) => sum + val, 0);
+// => 15
+```
+
+* **N.B.** An _identity function_ is a function that simply returns whatever is passed to it.
