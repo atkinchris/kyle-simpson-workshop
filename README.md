@@ -37,3 +37,4 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Promise Abstractions
 * _Exercise 5 & 6 (Using Asynqence)_
 * Generators & Promises
+* _Exercise 7_

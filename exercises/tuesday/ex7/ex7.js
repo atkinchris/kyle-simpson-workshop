@@ -32,4 +32,16 @@ function getFile(file) {
 // but only once previous rendering
 // is done.
 
-// ???
+ASQ()
+  .runner(function *() {
+		var t1 = getFile('file1');
+		var t2 = getFile('file2');
+		var t3 = getFile('file3');
+
+		output(yield t1);
+		output(yield t2);
+		output(yield t3);
+  })
+  .val(function() {
+    console.log('Done!');
+  });
