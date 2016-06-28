@@ -132,3 +132,47 @@ ASQ()
     yield getData(10); // This throws an error as it rejects
   });
 ```
+
+
+## Concurrency: Events & Promises
+
+* Promises, by design, can only be resolved once. This makes them unsuitable for events like button clicks.
+
+
+### RxJS
+
+* Observation libraries can watch events and perform functions.
+* Observable `.map`, much like `Array#map`, consumes an event stream at a point in time.
+* [RxMarbles](rxmarbles.com) shows examples of _RxJS_ reactive operations.
+
+
+### asynqence - Reactive Sequences
+
+```javascript
+function fromEvent(el, eventType) {
+  return ASQ.react(function(proceed) {
+    $(el).bind(eventType, proceed);
+  });
+}
+
+// aka: observable
+var reactive = fromEvent(button, 'click');
+
+reactive
+  .val(function (event) {
+    return event.target.className;
+  })
+  .then(function(done, className) {
+    // ...
+  })
+```
+
+* Streams can be combined
+
+```javascript
+var reactive1 = fromEvent(button, 'click');
+var reactive2 = fromEvent(input, 'keypress');
+
+var reactive3 = ASQ.react.all(reactive1, reactive2); // a.k.a 'zip'
+var reactive4 = ASQ.react.any(reactive1, reactive2); // a.k.a 'merge'
+```
