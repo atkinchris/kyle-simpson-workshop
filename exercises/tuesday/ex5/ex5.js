@@ -20,8 +20,18 @@ function output(text) {
 // **************************************
 
 function getFile(file) {
-	// what do we do here?
+	return function(done) {
+		fakeAjax(file, done);
+	}
 }
 
 // request an array of files at once in "parallel"
-// ???
+ASQ().all(
+	getFile('file1'),
+	getFile('file2'),
+	getFile('file3')
+).val(function(text1, text2, text3) {
+	console.log(text1);
+	console.log(text2);
+	console.log(text3);
+})
