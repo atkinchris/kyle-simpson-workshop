@@ -117,3 +117,18 @@ ASQ()
     console.log(answer); // => 'Meaning of life: 42'
   });
 ```
+
+* If the awaited promise rejects, a hard error will be thrown.
+
+```javascript
+function getData(d) {
+  return ASQ(function(done) {
+    setTimeout(function() { done.fail() }, 1000);
+  });
+}
+
+ASQ()
+  .runner(function *() {
+    yield getData(10); // This throws an error as it rejects
+  });
+```
