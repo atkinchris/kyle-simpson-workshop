@@ -31,3 +31,89 @@ Promise.race([
   error
 );
 ```
+
+
+## Generators & Promises
+
+```javascript
+// Generators review
+function* generator() {
+  console.log('Hello');
+  yield;
+  console.log('World');
+}
+
+var it = generator();
+it.next(); // => 'Hello'
+it.next(); // => 'World'
+```
+
+* `yield;` is shorthand for `yield undefined;`.
+* Generator `yield` is actually two way.
+
+```javascript
+function coroutine(g) {
+  var it = g();
+  return function() {
+    return it.next.apply(it, arguments);
+  }
+}
+
+var run = coroutine(function *() {
+  var x = 1 + (yield);
+  var y = 1 + (yield);
+  yield (x + y);
+});
+
+run();
+run(10);
+console.log('Meaning of life: ' + run(30).value);
+```
+
+* `yield` can be used in generators to write asynchronous code - synchronously.
+
+```javascript
+function getData(d) {
+  setTimeout(function() {
+    run(d);
+  }, 1000);
+}
+
+var run = coroutine(function *() {
+  var x = 1 + (yield getData(10));
+  var y = 1 + (yield getData(30));
+  var answer = (yield getData(
+    'Meaning of life: ' + (x + y)
+  ));
+  console.log(answer); // => 'Meaning of life: 42'
+});
+
+run();
+```
+
+* This reintroduces callbacks - and the trust issues that come with them.
+* To avoid this: _yield promises_.
+* **Kyle says:** This is super important. Yielding promises is the best of both worlds.
+
+```javascript
+function getData(d) {
+  return ASQ(function(done) {
+    setTimeout(function() {
+      done(d);
+    }, 1000);
+  });
+}
+
+ASQ()
+  .runner(function *() {
+    var x = 1 + (yield getData(10));
+    var y = 1 + (yield getData(30));
+    var answer = yield (getData(
+      'Meaning of life: ' + (x + y)
+    ));
+    yield answer;
+  })
+  .val(function(answer) {
+    console.log(answer); // => 'Meaning of life: 42'
+  });
+```
