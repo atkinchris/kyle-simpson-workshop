@@ -40,3 +40,4 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * _Exercise 7_
 * Concurrency: Events & Promises
 * _Exercise 8_
+* CSP: Communicating Sequential Processes

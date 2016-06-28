@@ -176,3 +176,24 @@ var reactive2 = fromEvent(input, 'keypress');
 var reactive3 = ASQ.react.all(reactive1, reactive2); // a.k.a 'zip'
 var reactive4 = ASQ.react.any(reactive1, reactive2); // a.k.a 'merge'
 ```
+
+
+## CSP: Communicating Sequential Processes
+
+* Create duplex channels for asynchronously passing data between generators.
+
+```javascript
+var ch = channel();
+
+function *process1() {
+  yield put(ch, 'Hello');
+  var msg = yield take(ch);
+  console.log(msg);
+}
+
+function *process2() {
+  var greeting = yield take(ch);
+  yield put(ch, greeting + ' World');
+  console.log('Done');
+}
+```
