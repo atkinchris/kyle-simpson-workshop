@@ -6,14 +6,14 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Arrow Functions
 * Scoping
 * _Exercise 1_
-* Spread/gather operator
+* Spread/gather Operator
 * _Exercise 2_
-* Default parameters
+* Default Parameters
 
 ## Monday PM
 * Destructuring
 * _Exercise 3_
-* Object literals
+* Object Literals
 * Getters and Setters
 * String Interpolation
 * _Exercise 4_
@@ -22,3 +22,6 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Map
 * Generators
 * _Exercise 5_
+
+## Tuesday AM
+* Async Patterns

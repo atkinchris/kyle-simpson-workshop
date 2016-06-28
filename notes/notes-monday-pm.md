@@ -444,7 +444,7 @@ var o = {
 * Can be converted to real arrays with `[...o]`, allowing for `[...o].map(..)`.
 
 
-### Number iterators
+### Number Iterators
 
 * It's possible to use generators to create number iterators.
 
