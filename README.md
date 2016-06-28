@@ -32,3 +32,6 @@ Notes and exercises from Kyle Simpson's JavaScript workshop, June 2016.
 * Promises
 * _Exercise 3_
 * _Exercise 4_
+
+## Tuesday PM
+* Promise Abstractions
