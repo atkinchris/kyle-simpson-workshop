@@ -3,11 +3,14 @@ Monday 27th June 2016 - PM Session
 
 ## Destructuring
 
+* Can be used to extract components from arrays and objects.
+
 ```javascript
 function foo() {
   return [1, 2, 3, 4];
 }
 
+// Array extraction without destructuring
 var tmp = foo();
 var a = tmp[0];
 var b = tmp[1];
@@ -17,6 +20,7 @@ function bar() {
   return { x: 1, y: 2, z: 3, w: 8 };
 }
 
+// Object extraction without destructuring
 var tmp = bar();
 var a = tmp.x;
 var b = tmp.y;
@@ -31,8 +35,8 @@ var [a, b, c] = foo();
 var { x, y, z } = bar();
 ```
 
-* **Kyle says:** Use indentation and whitespace for readability in destructuring.
-* Makes it more readable, and easier to see complex assignments.
+* **Kyle says:** Use indentation and whitespace for readability in destructuring. Makes it more readable, and easier to see complex assignments.
+* You can provide default values for any part of a destructing. This can be any valid JavaScript expression.
 
 ```javascript
 var [
@@ -63,7 +67,7 @@ var x, y, z;
 } = bar() || {});
 ```
 
-* Can work for complex object destructuring too.
+* Can work for complex and nested object destructuring too.
 * Defaults can be provided to defend against errors.
 
 ```javascript
@@ -139,7 +143,7 @@ var {
 
 ### Named Parameters
 
-* Object destructuring can be used to extract named parameters.
+* Object destructuring can be used to extract named parameters. This allows functions to have named parameters, and save having to pass `null`.
 
 ```javascript
 function foo({ a, b, c, d, e, f, g } = {}) {
@@ -153,8 +157,7 @@ foo({
 });
 ```
 
-* **Kyle says:** Useful pattern - _destructuring and restructuring_.
-* Useful for deep merging objects.
+* **Kyle says:** Useful pattern - _destructuring and restructuring_. Useful for deep merging objects.
 
 ```javascript
 const defaults = {
@@ -242,7 +245,7 @@ var o = {
 }
 ```
 
-* Computed properties are now valid.
+* Computed properties names are also valid.
 
 ```javascript
 var prop = 'c';
@@ -268,10 +271,13 @@ var o = {
 }
 ```
 
-* This also works for _generators_. `{ *a() {} }`
+* Computed and concise names also work for _generators_. `{ *a() {} }`
 
 
 ## Getters and Setters
+
+* Been around since ES5.
+* **Kyle says:** He's never needed a setter, but getters allow _lazy_ creation of complex properties.
 
 ```javascript
 var o = {
@@ -308,13 +314,16 @@ var msg = 'Hello ' + name + ', \
 var msg = `Hello ${name}, you are the ${title} of the ${workshop} workshop!`;
 ```
 
-* Tags can be used to perform functions on each string component.
+* Tags can be used to perform functions on each string or value component.
+* An example is making all values uppercase.
+* They have an unusual syntax that does not use parentheses.
 
 ```javascript
 function foo(strings, ...values) {
-  var str = '';
+  strings; // => array of string components in template.
+  values; // => array of values that were passed into the template.
 
-  return str;
+  // Returns a string that will be used as the output of the template.
 }
 
 var msg = foo`Hello ${name}, you are the ${title} of the ${workshop} workshop!`;
@@ -347,6 +356,7 @@ o[Object.getOwnPropertySymbols(o)[0]]; // => 42
 ## Iterators
 
 * Can use symbols to access native iterator on `Array`-like objects.
+* Can be used to create an iterator on an object.
 
 ```javascript
 var a = [1, 2, 3, 4, 5];
@@ -367,7 +377,7 @@ for (let ret; !(ret || ret.done);) {
 }
 ```
 
-* For-loops on iterators are messy. Use for-of.
+* For-loops on iterators are messy. Use for-of, which handles calling `.next`.
 
 ```javascript
 var a = [1, 2, 3, 4, 5];
@@ -380,6 +390,8 @@ for (let val of a) {
 
 ## Map
 
+* Dictionary style iterable with keys and values.
+
 ```javascript
 var m = new Map();
 m.set('x', 42);
@@ -391,8 +403,9 @@ for (var x of m.entries()) {
 
 ## Generators
 
-* Not guaranteed to run to completion.
+* Unlike normal JavaScript functions, they are not guaranteed to run to completion.
 * Can be _paused_ by using `yield` to return a value.
+* Values can be passed into the generator by calling the iterator with a parameter.
 * Return an iterator when executed.
 
 ```javascript
@@ -409,7 +422,7 @@ for (let val of it) {
 }
 ```
 
-* Can be used to create your own iterators.
+* Can be used to create your own special iterators.
 
 ```javascript
 // With Symbols

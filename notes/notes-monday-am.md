@@ -105,7 +105,7 @@ function foo(x, y) {
 ```
 
 * Some people have advocated `let` is the new `var` - but this is not always the best thing.
-* Instead - use `var` for all variables you intend to be used across scopes.
+* Instead - use `var` for all variables you intend to be used _across_ scopes.
 
 ```javascript
 // Wrapping in a try/catch to debug will affect scope
@@ -143,7 +143,7 @@ function foo(x, y) {
 ```
 
 * _TDZ_ - _temporal dead zone_. Time between opening of a block and the time you declare a variable. A variable cannot be used in this _zone_. (**Kyle says**: WTF is that name)
-* Hoisting is a metaphor for the actual first pass of compilation.
+* Hoisting isn't real - it is a metaphor for the actual first pass of compilation.
 * `let` will automatically close scope for each iteration of a for-loop, removing the need for internal binding.
 
 ```javascript
@@ -171,9 +171,9 @@ x[0] = 4;
 ```
 
 * **Kyle says:** rather than using `const` to signal unchanging assignment - simply keep scopes short and don't reassign it.
-* He's never had a bug that came from reassigning a variable.
+* **Kyle says:** He's never had a bug that came from reassigning a variable.
 * For _proper_ immutability, use `Object.freeze` - beware, this is shallow.
-* `const` doesn't really help - it's more a reassuring _night light_ to a monster that doesn't exist.
+* **Kyle says:** `const` doesn't really help - it's more a reassuring _night light_ to a monster that doesn't exist.
 
 ```javascript
 // Proper value immutability
@@ -213,7 +213,7 @@ function foo(...args) {
 }
 ```
 
-* `...` can also be used for Array manipulation
+* `...` can also be used for Array manipulation.
 
 ```javascript
 var a = [1, 2, 3];
@@ -230,7 +230,7 @@ var c = [0, ...a, ...b, 7];
 
 ## Default Parameters
 
-* ES6 gives default parameters - much easier readability
+* ES6 brings default parameters - which make defaults much easier for readability.
 
 ```javascript
 function foo(x) {
@@ -255,6 +255,7 @@ function foo(x = bar()) {
   // ...
 }
 
+// Parameters can be used in other parameters
 function foo(x = 2, id = uniqId(x)) {
   // ...
 }
@@ -271,7 +272,7 @@ function foo(id = uniqId(x)) {
 }
 ```
 
-* Be careful with implementations
+* Be careful with implementations of parameter internal scope.
 
 ```javascript
 function foo(x = 2) {
